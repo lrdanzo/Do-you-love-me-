@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Do you love me Thakurain?</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, #fbc2eb, #a6c1ee);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  #gift, #teddy, #question, #buttons {
+    display: none;
+    text-align: center;
+  }
+  #gift {
+    font-size: 50px;
+    animation: pulse 1s infinite;
+  }
+  #teddy {
+    font-size: 80px;
+    animation: bounce 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+  }
+  .btn {
+    padding: 12px 25px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: 0.3s;
+  }
+  .yes { background: #8fd3f4; }
+  .no { background: #ffb6b9; position: absolute; }
+</style>
+</head>
+<body>
+
+<div id="gift">🎁 Tap Me!</div>
+<div id="teddy">🧸</div>
+<div id="question"><h2>Do you love me Thakurain?</h2></div>
+<div id="buttons">
+  <button class="btn yes">Yes ❤️</button>
+  <button class="btn no">No 😢</button>
+</div>
+
+<script>
+  const gift = document.getElementById("gift");
+  const teddy = document.getElementById("teddy");
+  const question = document.getElementById("question");
+  const buttons = document.getElementById("buttons");
+  const noBtn = document.querySelector(".no");
+
+  gift.style.display = "block";
+  gift.onclick = () => {
+    alert("आपके लिए एक gift है!");
+    gift.style.display = "none";
+    teddy.style.display = "block";
+    setTimeout(() => {
+      teddy.style.display = "none";
+      question.style.display = "block";
+      buttons.style.display = "block";
+    }, 2000);
+  };
+
+  document.querySelector(".yes").onclick = () => {
+    alert("I love you too ❤️❤️");
+    createHearts();
+  };
+
+  noBtn.onclick = () => {
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+  };
+
+  function createHearts() {
+    for(let i=0; i<30; i++) {
+      let heart = document.createElement("div");
+      heart.innerHTML = "💖";
+      heart.style.position = "absolute";
+      heart.style.fontSize = (Math.random()*20 + 20) + "px";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = Math.random() * window.innerHeight + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 3000);
+    }
+  }
+</script>
+
+</body>
+</html>
